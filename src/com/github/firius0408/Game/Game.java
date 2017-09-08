@@ -36,9 +36,9 @@ public class Game {
     }
 
     public void Beginning() {
-        System.out.println("The ground is scorched, but you can’t remember why. There are ashes scattered across the ground.\nSuddenly, the black dust begins to swirl like a small tornado. You begin to see a shape formulating, an animal.\nOnce the ash clears, a phoenix stands tall and roars in your direction.\nYou’re out of its fighting range for now, but it might be able to catch you.");
+        System.out.println("The ground is scorched, but you can't remember why. There are ashes scattered across the ground.\nSuddenly, the black dust begins to swirl like a small tornado. You begin to see a shape formulating, an animal.\nOnce the ash clears, a phoenix stands tall and roars in your direction.\nYou're out of its fighting range for now, but it might be able to catch you.");
         Fight("Phoenix", 3, 5, 4, "With one final swing of your sword, you vanquish the phoenix, its body falling onto the ground", "You lose", "You bend over, out of breath. Behind you, the phoenix roars in frustration, scouring the ground for your presence");
-        System.out.println("The land of ________ was at peace with the\nland. The weather had been perfect for agriculture for\nmany years now, so a surplus of food caused the \nnation to flourish. Standard of living went up, \npeople were happy, and marijuana was legal.\n\tBut then the fire nation attacked.\nThey used flamethrowers, fireballs, and \nanything else with fire involved. Matches and lighters \ntoo. Every house in ________ was burned to \nthe ground, and the grass was scorched as well. \nMost of _____’s citizens evacuated within a week \nof the attack, but you, " + userName + ", have stayed for \nsome reason. What reason, you cannot \nremember. But surely it’ll come to you sometime.\n \tRight?");
+        System.out.println("The land of ________ was at peace with the\nland. The weather had been perfect for agriculture for\nmany years now, so a surplus of food caused the \nnation to flourish. Standard of living went up, \npeople were happy, and marijuana was legal.\n\tBut then the fire nation attacked.\nThey used flamethrowers, fireballs, and \nanything else with fire involved. Matches and lighters \ntoo. Every house in ________ was burned to \nthe ground, and the grass was scorched as well. \nMost of _____'s citizens evacuated within a week \nof the attack, but you, " + userName + ", have stayed for \nsome reason. What reason, you cannot \nremember. But surely it'll come to you sometime.\n \tRight?");
         System.out.println("You are now faced with a difficult choice. You can walk west towards the plains, or you can walk north towards the mountains.\nWhich do you choose?");
         String choice = inputString.nextLine();
         while(!choice.equalsIgnoreCase("plains") && !choice.equalsIgnoreCase("mountains")){
@@ -61,7 +61,7 @@ public class Game {
             trekSleep = inputString.nextLine();
         }
         if (trekSleep.equalsIgnoreCase("sleep")){
-            System.out.println("You wake up in a cold sweat. Soft padded footsteps are sneaking towards you. You wait until they are close,\nand stand up to face the largest wolf you’ve ever seen.");
+            System.out.println("You wake up in a cold sweat. Soft padded footsteps are sneaking towards you. You wait until they are close,\nand stand up to face the largest wolf you've ever seen.");
             Fight("Wolf", 3, 4, 6, "You win", "You lose", "You ran");
         }
         else {
