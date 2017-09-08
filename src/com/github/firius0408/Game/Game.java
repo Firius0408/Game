@@ -230,6 +230,7 @@ public class Game {
         }
         points = points + magic1;
         int[] array1 = {points, intelligence1, agility1, power1, health1, magic1};
+        System.out.println("Hi");
         return array1;
     }
 }
