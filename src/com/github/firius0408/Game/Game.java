@@ -18,25 +18,25 @@ public class Game {
     public void startGame(){
         System.out.println("Welcome to our game.\nLet us begin...\n\n\nWhat is your name?");
         userName = inputString.nextLine();
-        System.out.println("Welcome " + userName + "\nTime to delegate your stats.\nYou have 25 points to distribute to the following 5 categories,\n with a maximum of 10 points per category.\nEach category must have at least 1 point");
+        System.out.println("Welcome, " + userName + ". It's time to delegate your stats.\nYou have 25 points to distribute to the following 5 categories:\nIntelligence, Agility, Power, Health, and Magic.\nEach category must have at least 1 point, and at most 10 points.");
         int[] array = Points(); // holds all the points in each category
         while (array[0] != 25){
             System.out.println("Your points did not add up to 25 or you ran out of points. Please try again");
             array = Points();
         }
         points = array;
-        System.out.println("These are your points:");
-        System.out.println("intelligence: " + points[1]);
-        System.out.println("agility: " + points[2]);
-        System.out.println("power: " + points[3]);
-        System.out.println("health: " + points[4]);
-        System.out.println("magic: " + points[5]);
+        System.out.println("You have distributed your points accordingly:");
+        System.out.println("Intelligence: " + points[1]);
+        System.out.println("Agility: " + points[2]);
+        System.out.println("Power: " + points[3]);
+        System.out.println("Health: " + points[4]);
+        System.out.println("Magic: " + points[5]);
         currentHealth = points[4] * 100;
         Beginning();
     }
 
     public void Beginning() {
-        System.out.println("The ground is scorched, but you can't remember why. There are ashes scattered across the ground.\nSuddenly, the black dust begins to swirl like a small tornado. You begin to see a shape formulating, an animal.\nOnce the ash clears, a phoenix stands tall and roars in your direction.\nYou're out of its fighting range for now, but it might be able to catch you.");
+        System.out.println("\n\n\tThe ground is scorched, but you can't remember why. There are ashes scattered across the ground.\nSuddenly, the black dust begins to swirl like a small tornado. You begin to see a shape formulating, an\nanimal. Once the ash clears, a phoenix stands tall and roars in your direction. You're out of its fighting\nrange for now, but it might be able to catch you.\n");
         Fight("Phoenix", 3, 5, 4, "With one final swing of your sword, you vanquish the phoenix, its body falling onto the ground", "You lose", "You bend over, out of breath. Behind you, the phoenix roars in frustration, scouring the ground for your presence");
         System.out.println("The land of ________ was at peace with the\nland. The weather had been perfect for agriculture for\nmany years now, so a surplus of food caused the \nnation to flourish. Standard of living went up, \npeople were happy, and marijuana was legal.\n\tBut then the fire nation attacked.\nThey used flamethrowers, fireballs, and \nanything else with fire involved. Matches and lighters \ntoo. Every house in ________ was burned to \nthe ground, and the grass was scorched as well. \nMost of _____'s citizens evacuated within a week \nof the attack, but you, " + userName + ", have stayed for \nsome reason. What reason, you cannot \nremember. But surely it'll come to you sometime.\n \tRight?");
         System.out.println("You are now faced with a difficult choice. You can walk west towards the plains, or you can walk north towards the mountains.\nWhich do you choose?");
@@ -101,14 +101,16 @@ public class Game {
     }
 
     public void Fight(String name, int power, int health, int agility, String win, String lose, String run){
-        System.out.println("Would you like to fight or run?");
+    	String[] enemyHits = {"hits", "strikes", "scratches", "swipes at", "smacks", "screeches at", "shakes", "batters", "pounds", "snarls at"};
+    	String[] userHits = {"hit", "strike", "scratch", "swipe at", "smack", "punch", "shake", "batter", "pound", "kick"};
+    	System.out.println("Would you like to fight or run?");
         String choice = inputString.nextLine();
         while (!choice.equalsIgnoreCase("fight") && !choice.equalsIgnoreCase("run")) {
             System.out.println("Would you like to fight or run?");
             choice = inputString.nextLine(); 
         }
         if (choice.equals("fight")){
-            System.out.println("You have choosen to fight");
+            System.out.println("You have choosen to fight!");
             int powerUser = points[3];
             health = health*20;
             if (agility > points[2]){
@@ -117,12 +119,12 @@ public class Game {
                     if (health > 0){
                         int damage = random.nextInt(6) + power;
                         currentHealth = currentHealth - damage;
-                        System.out.println("The " + name + " hits you with " + damage + " damage, leaving you with " + currentHealth + " health");
+                        System.out.println("The " + name + " " + enemyHits[(int)(Math.random()*10)] + " you with " + damage + " damage, leaving you with " + currentHealth + " health");
                     }
                     if (currentHealth > 0){
                         int damageUser = random.nextInt(6) + powerUser;
                         health = health - damageUser;
-                        System.out.println("You hit the " + name + " with " + damageUser + " damage, leaving it with " + health + " health");
+                        System.out.println("You " + userHits[(int)(Math.random()*10)] + " the " + name + " with " + damageUser + " damage, leaving it with " + health + " health");
                     }
                 }
                 if (currentHealth <= 0){
@@ -144,12 +146,12 @@ public class Game {
                     if (currentHealth > 0){
                         int damageUser = random.nextInt(6) + powerUser;
                         health = health - damageUser;
-                        System.out.println("You hit the " + name + " with " + damageUser + " damage, leaving it with " + health + " health");
+                        System.out.println("You " + userHits[(int)(Math.random()*10)] + " the " + name + " with " + damageUser + " damage, leaving it with " + health + " health");
                     }
                     if (health > 0){
                         int damage = random.nextInt(6) + power;
                         currentHealth = currentHealth - damage;
-                        System.out.println("The " + name + " hits you with " + damage + " damage, leaving you with " + currentHealth + " health");
+                        System.out.println("The " + name + " " + enemyHits[(int)(Math.random()*10)] + " you, dealing " + damage + " damage, leaving you with " + currentHealth + " health");
                     }
                 }
                 if (currentHealth <= 0){
@@ -189,43 +191,43 @@ public class Game {
         int magic1 = 11;
         int[] array = {points, intelligence1, agility1, power1, health1, magic1};
         while (intelligence1 > 10 || intelligence1 < 1){   
-            System.out.println("Points into intelligence:");
+            System.out.println("How many points would you like to assign to intelligence?");
             intelligence1 = inputInt.nextInt();
         }
         points = points + intelligence1;
         if (points > 25){
             return array;
         }
-        System.out.println("You have " + (25 - points) + " points left to use");
+        System.out.println("You have " + (25 - points) + " points left to use.");
         while (agility1 > 10 || agility1 < 1){   
-            System.out.println("Points into agility:");
+            System.out.println("How many points would you like to assign to agility?");
             agility1 = inputInt.nextInt();
         }
         points = points + agility1;
         if (points > 25){
             return array;
         }
-        System.out.println("You have " + (25 - points) + " points left to use");
+        System.out.println("You have " + (25 - points) + " points left to use.");
         while (power1 > 10 || power1 < 1){   
-            System.out.println("Points into power:");
+            System.out.println("How many points would you like to assign to power?");
             power1 = inputInt.nextInt();
         }
         points = points + power1;
         if (points > 25){
             return array;
         }
-        System.out.println("You have " + (25 - points) + " points left to use");
+        System.out.println("You have " + (25 - points) + " points left to use.");
         while (health1 > 10 || health1 < 1){   
-            System.out.println("Points into health:");
+            System.out.println("How many points would you like to assign to health?");
             health1 = inputInt.nextInt();
         }
         points = points + health1;
         if (points > 25){
             return array;
         }
-        System.out.println("You have " + (25 - points) + " points left to use and must use them all in this category");
+        System.out.println("You have " + (25 - points) + " points left to use, and all of your remaining points must be assigned to magic.");
         while (magic1 > 10){   
-            System.out.println("Points into magic:");
+            System.out.println("How many points would you like to assign to magic?");
             magic1 = inputInt.nextInt();
         }
         points = points + magic1;
