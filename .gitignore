@@ -1,4 +1,4 @@
-.settings
-.project
-.classpath
-*.class
+!*.java
+!*git*
+!README.md
+*.*
