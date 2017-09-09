@@ -184,69 +184,71 @@ public class Game {
     
     public int[] Points(){
         int points = 0;
-        int intelligence1 = 11;
-        int agility1 = 11;
-        int power1 = 11;
-        int health1 = 11;
-        int magic1 = 11;
-        int[] array = {points, intelligence1, agility1, power1, health1, magic1};
+        int intelligence1;
+        int agility1;
+        int power1;
+        int health1;
+        int magic1;
+        int[] array = {points, 0, 0, 0, 0, 0};
+        System.out.println("How many points would you like to assign to intelligence?");
+        intelligence1 = inputInt.nextInt();
         while (intelligence1 > 10 || intelligence1 < 1){   
+        	System.out.println("That's not between 1 and 10. Please input a different value.");
             System.out.println("How many points would you like to assign to intelligence?");
             intelligence1 = inputInt.nextInt();
-            PointCheck(intelligence1);
         }
         points = points + intelligence1;
         if (points > 25){
             return array;
         }
         System.out.println("You have " + (25 - points) + " points left to use.");
+      	System.out.println("That's not between 1 and 10. Please input a different value.");
+        System.out.println("How many points would you like to assign to agility?");
+        agility1 = inputInt.nextInt();
         while (agility1 > 10 || agility1 < 1){   
+        	System.out.println("That's not between 1 and 10. Please input a different value.");
             System.out.println("How many points would you like to assign to agility?");
             agility1 = inputInt.nextInt();
-            PointCheck(agility1);
         }
         points = points + agility1;
         if (points > 25){
             return array;
         }
         System.out.println("You have " + (25 - points) + " points left to use.");
+        System.out.println("How many points would you like to assign to power?");
+        power1 = inputInt.nextInt();
         while (power1 > 10 || power1 < 1){   
+        	System.out.println("That's not between 1 and 10. Please input a different value.");
             System.out.println("How many points would you like to assign to power?");
             power1 = inputInt.nextInt();
-            PointCheck(power1);
         }
         points = points + power1;
         if (points > 25){
             return array;
         }
         System.out.println("You have " + (25 - points) + " points left to use.");
+        System.out.println("That's not between 1 and 10. Please input a different value.");
+        System.out.println("How many points would you like to assign to health?");
+        health1 = inputInt.nextInt();
         while (health1 > 10 || health1 < 1){   
+        	System.out.println("That's not between 1 and 10. Please input a different value.");
             System.out.println("How many points would you like to assign to health?");
             health1 = inputInt.nextInt();
-            PointCheck(health1);
         }
         points = points + health1;
         if (points > 25){
             return array;
         }
         System.out.println("You have " + (25 - points) + " points left to use, and all of your remaining points must be assigned to magic.");
+        System.out.println("How many points would you like to assign to magic?");
+        magic1 = inputInt.nextInt();
         while (magic1 > 10 || magic1 < 1){   
+        	System.out.println("That's not between 1 and 10. Please input a different value.");
             System.out.println("How many points would you like to assign to magic?");
             magic1 = inputInt.nextInt();
-            PointCheck(magic1);
         }
         points = points + magic1;
         int[] arrayOfPoints = {points, intelligence1, agility1, power1, health1, magic1};
         return arrayOfPoints;
-    }
-    public void PointCheck(int num){
-    	if (num < 1 || num > 10)
-    	{
-    		System.out.println("That's not between 1 and 10. Please input a different value.");
-    	}
-    	else
-    	{
-    		System.out.print("");
-    	}
     }
 }
