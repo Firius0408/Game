@@ -175,6 +175,7 @@ public class Game {
             }
             else {
                 System.out.println("You tried to escape, but you are not fast enough.");
+                endGame();
             }
         }
         else {
