@@ -202,7 +202,6 @@ public class Game {
             return array;
         }
         System.out.println("You have " + (25 - points) + " points left to use.");
-      	System.out.println("That's not between 1 and 10. Please input a different value.");
         System.out.println("How many points would you like to assign to agility?");
         agility1 = inputInt.nextInt();
         while (agility1 > 10 || agility1 < 1){   
@@ -227,7 +226,6 @@ public class Game {
             return array;
         }
         System.out.println("You have " + (25 - points) + " points left to use.");
-        System.out.println("That's not between 1 and 10. Please input a different value.");
         System.out.println("How many points would you like to assign to health?");
         health1 = inputInt.nextInt();
         while (health1 > 10 || health1 < 1){   
