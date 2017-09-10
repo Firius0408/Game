@@ -175,12 +175,37 @@ public class Game {
             }
             else {
                 System.out.println("You tried to escape, but you are not fast enough.");
-                endGame();
+                int powerUser = points[3];
+                health = health*20;
+                    while(currentHealth > 0 && health > 0){
+                        if (health > 0){
+                            int damage = random.nextInt(6) + power;
+                            currentHealth = currentHealth - damage;
+                            System.out.println("The " + name + " " + enemyHits[(int)(Math.random()*10)] + " you with " + damage + " damage, leaving you with " + currentHealth + " health.");
+                        }
+                        if (currentHealth > 0){
+                            int damageUser = random.nextInt(6) + powerUser;
+                            health = health - damageUser;
+                            System.out.println("You " + userHits[(int)(Math.random()*10)] + " the " + name + " with " + damageUser + " damage, leaving it with " + health + " health.");
+                        }
+                    }
+                    if (currentHealth <= 0){
+                        System.out.println(lose);
+                        endGame();
+                    }
+                    else if (health <= 0){
+                        System.out.println(win);
+                        exp = exp + 10;
+                        System.out.println("Your xp is now " + exp + ".");
+                    }
+                    else {
+                        System.out.println("shit");
+                    }
+                }
             }
-        }
         else {
+        	System.out.println("shit");
         }
-
     }
     
     public int[] Points(){
