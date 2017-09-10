@@ -4,26 +4,26 @@ import java.util.Scanner;
 import java.util.Random;
 
 public class Game {
-	public int[] points;
-	public int currentHealth;
+	public int[] points; // intelligence -> 1, agility -> 2, power -> 3, health -> 4, magic -> 5
+	public int currentHealth; // maintains health after fights
 	public int exp = 0;
-	public Scanner inputInt = new Scanner(System.in);
-	public Scanner inputString = new Scanner(System.in);
-	public Random random = new Random();
+	public Scanner inputInt = new Scanner(System.in); // use for integers
+	public Scanner inputString = new Scanner(System.in); // use for strings
+	public Random random = new Random(); //use for random integers ex: random.nextInt(highest_number_in_range_here)
 	public String userName;
 
 	public static void main(String[] args) {
-		Game game = new Game();
+		Game game = new Game(); //creates new instance of game and calls startGame method
 		game.startGame();
 	}
-
+	//TODO add save file? Inventory? Armor? Food? What to do with exp?
 	public void startGame() {
 		System.out.println("Welcome to our game.\nLet us begin...\n\n\nWhat is your name?");
 		userName = inputString.nextLine();
 		System.out.println("Welcome, " + userName
 				+ ". It's time to delegate your stats.\nYou have 25 points to distribute to the following 5 categories:\nIntelligence, Agility, Power, Health, and Magic.\nEach category must have at least 1 point, and at most 10 points.");
 		int[] array = Points(); // holds all the points in each category
-		while (array[0] != 25) {
+		while (array[0] != 25) { //really shitty way of making sure points add up to 25. Probably should be integrated into Points method someday
 			System.out.println("Your points did not add up to 25 or you ran out of points. Please try again.");
 			array = Points();
 		}
@@ -35,13 +35,13 @@ public class Game {
 		System.out.println("Health: " + points[4]);
 		System.out.println("Magic: " + points[5]);
 		currentHealth = points[4] * 100;
-		Beginning();
+		Beginning(); //calls Beginning method
 	}
 
 	public void Beginning() {
-		System.out.println(
+		System.out.println( // plot stuff
 				"\n\n\tThe ground is scorched, but you can't remember why. There are ashes scattered across the ground.\nSuddenly, the black dust begins to swirl like a small tornado. You begin to see a shape formulating, an\nanimal. Once the ash clears, a phoenix stands tall and roars in your direction. You're out of its fighting\nrange for now, but it might be able to catch you.\n");
-		Fight("Phoenix", 3, 5, 4,
+		Fight("Phoenix", 3, 5, 4, //fight Phoenix
 				"With one final swing of your sword, you vanquish the phoenix, its body falling onto the ground.",
 				"You lose",
 				"You bend over, out of breath. Behind you, the phoenix roars in frustration, scouring the ground for your presence.");
@@ -51,7 +51,7 @@ public class Game {
 						+ ", have stayed behind. For what reason, you cannot remember.\nBut surely it'll come to you sometime.\n \tRight?");
 		System.out.println(
 				"\nYou are now faced with a difficult choice. You can walk west towards the plains, or you can walk north towards the mountains.\nWhich do you choose?");
-		String choice = inputString.nextLine();
+		String choice = inputString.nextLine(); // choice of plains or mountains
 		while (!choice.equalsIgnoreCase("plains") && !choice.equalsIgnoreCase("mountains")) {
 			System.out.println("Plains or Mountains?");
 			choice = inputString.nextLine();
@@ -63,21 +63,21 @@ public class Game {
 		}
 	}
 
-	public void Plains() {
+	public void Plains() { // plains path
 		System.out.println(
 				"You choose to make the trek across the grueling scorched earth. The sun begins to drop along the horizon.\nEventually, though, you see a faint outline of a ______(building) in the distance. With little water left in your flask,\nyou can either sleep where you are or expend whatever energy it takes to get to _____.\nSleep until the next day or continue?");
 		String trekSleep = inputString.nextLine();
-		while (!trekSleep.equalsIgnoreCase("sleep") && !trekSleep.equalsIgnoreCase("continue")) {
+		while (!trekSleep.equalsIgnoreCase("sleep") && !trekSleep.equalsIgnoreCase("continue")) { // sleep or continue
 			System.out.println("Sleep or Continue?");
 			trekSleep = inputString.nextLine();
 		}
-		if (trekSleep.equalsIgnoreCase("sleep")) {
+		if (trekSleep.equalsIgnoreCase("sleep")) { //sleep leads to fight with Wolf
 			System.out.println(
 					"You wake up in a cold sweat. Soft padded footsteps are sneaking towards you. You wait until they are close,\nand stand up to face the largest wolf you've ever seen.");
-			Fight("Wolf", 3, 4, 6, "You win", "You lose", "You ran");
+			Fight("Wolf", 3, 4, 6, "You win", "You lose", "You ran"); //TODO add better win and lose and run lines
 		} else {
-			if (points[2] + random.nextInt(2) < 6) {
-				System.out.println(
+			if (points[2] + random.nextInt(2) < 6) { // continue, check agility 
+				System.out.println( // too low, take damage
 						"Exhaustion sets in. You feel it in your very core. You collapse to the ground, desperately crawling forwards as you vision begins to wane.\nEverything is blurry,\neverything is dark.\n\nYou pass out.");
 				System.out.println("You take 200 damage");
 				currentHealth = currentHealth - 200;
@@ -87,7 +87,7 @@ public class Game {
 				}
 			}
 		}
-		System.out.println(
+		System.out.println( // both paths converge here
 				"Weak and dehydrated, you finally reach the blissful sanctuary of shade in the ________(building).\nYou can feel relief from the scorching sun, and you settle down to relax, you notice the door is locked to the inside,\nbut that is something to worry about later, you think to yourself.\nAs you relax, you ponder over the past events.");
 
 	}
@@ -98,7 +98,7 @@ public class Game {
 
 	}
 
-	public void endGame() {
+	public void endGame() { // end game method
 		System.out.println("You lost. You must suck at life");
 		System.out.println("Would you like to play again: [y/n]");
 		String playAgain = inputString.nextLine();
@@ -107,13 +107,13 @@ public class Game {
 			playAgain = inputString.nextLine();
 		}
 		if (playAgain.equalsIgnoreCase("y")) {
-			startGame();
+			startGame(); // restarts game if yes
 		} else {
-			System.out.println("Goodbye");
+			System.out.println("Goodbye"); //TODO close window?
 		}
 	}
 
-	public void Fight(String name, int power, int health, int agility, String win, String lose, String run) {
+	public void Fight(String name, int power, int health, int agility, String win, String lose, String run) { // fight method, could be cleaned up a bit?
 		String[] enemyHits = { "hits", "strikes", "scratches", "swipes at", "smacks", "screeches at", "shakes",
 				"batters", "pounds", "snarls at" };
 		String[] userHits = { "hit", "strike", "scratch", "swipe at", "smack", "punch", "shake", "batter", "pound",
@@ -124,11 +124,11 @@ public class Game {
 			System.out.println("Would you like to fight or run?");
 			choice = inputString.nextLine();
 		}
-		if (choice.equalsIgnoreCase("fight")) {
+		if (choice.equalsIgnoreCase("fight")) { // fight is chosen
 			System.out.println("You have choosen to fight!");
 			int powerUser = points[3];
 			health = health * 20;
-			if (agility > points[2]) {
+			if (agility > points[2]) { // checks to see who attacks first
 				System.out.println("The " + name + " moves more swiftly than you do, and it attacks first.");
 				while (currentHealth > 0 && health > 0) {
 					if (health > 0) {
@@ -182,12 +182,12 @@ public class Game {
 					System.out.println("shit");
 				}
 			}
-		} else if (choice.equalsIgnoreCase("run")) {
+		} else if (choice.equalsIgnoreCase("run")) { // run is chosen
 			if ((random.nextInt(5) + points[2]) > agility) {
 				System.out.println("You have successfully escaped!\n");
 				System.out.println(run);
 			} else {
-				System.out.println("You tried to escape, but you are not fast enough.");
+				System.out.println("You tried to escape, but you are not fast enough."); // goes back to fight
 				int powerUser = points[3];
 				health = health * 20;
 				while (currentHealth > 0 && health > 0) {
@@ -220,7 +220,7 @@ public class Game {
 		}
 	}
 
-	public int[] Points() {
+	public int[] Points() { // determines the delegation of points
 		int points = 0;
 		int intelligence1;
 		int agility1;
