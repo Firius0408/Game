@@ -94,7 +94,7 @@ public class Game {
 
 	public void Mountains() { // mountains path
 		System.out.println(
-				"After toiling through the troubles of the desert, you find yourself approaching a daunting mountain range.\nBy the time you arrive at the base of the first mountain, you see a storm brewing on the horizon,\nurging you onwards.\nHere, you see a large cave opening leading straight through the mountain,\nfrom which you hear an ominous growl. At this point, you can either go through the cave for shelter\nor start the arduous process of climbing the mountain. What will you do?");
+				"After toiling through the troubles of the desert, you find yourself approaching a daunting mountain range.\nBy the time you arrive at the base of the first mountain, you see a storm brewing on the horizon,\nurging you onwards.\nHere, you see a large cave opening leading straight through the mountain,\nfrom which you hear an ominous growl. At this point, you can either go through the cave for shelter\nor start the arduous process of climbing the mountain. Which path will you chose, Shelter or Climb?");
 		String shelterClimb = inputString.nextLine();
 		while (!shelterClimb.equalsIgnoreCase("shelter") && !shelterClimb.equalsIgnoreCase("climb")) { // shelter or climb
 			System.out.println("Shelter or Climb?");
