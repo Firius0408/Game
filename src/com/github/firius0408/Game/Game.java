@@ -1,4 +1,5 @@
 ﻿package com.github.firius0408.Game;
+
 import java.util.Scanner;
 import java.util.Random;
 
@@ -17,6 +18,7 @@ public class Game {
     }
 
     //TODO add save file? Inventory? Armor? Food? What to do with exp? Scrolling text or waiting for user input
+    //TODO experience in more things like lockpicking and magic, checkUserInput for key words like xp and health
     public void startGame() {
         System.out.println("Welcome to our game.\nLet us begin...\n\n\nWhat is your name?");
         userName = inputString.nextLine();
@@ -79,6 +81,8 @@ public class Game {
                     "Exhaustion sets in. You feel it in your very core. You collapse to the ground, desperately crawling forwards as you vision begins to wane.\nEverything is blurry,\neverything is dark.\n\nYou pass out.");
                 System.out.println("You take 200 damage");
                 currentHealth = currentHealth - 200;
+                System.out.println("Your health is now " + currentHealth);
+                System.out.println("\nA long time later, you finally are awakened by the lessening of the intense heat");
                 if (currentHealth < 0) {
                     System.out.println("You lost too much health");
                     endGame();
@@ -97,29 +101,31 @@ public class Game {
                 System.out.println("You successfully kick down the door.");
             }
             else {
-                System.out.println("Unable to break into the house, you sleep the outside in the cold night, taking 100 damage from hypothermia");
+                System.out.println("You have failed to pick the lock and knock down the door. You lack the strength to drag your exhausted body away from the _______(building), and collapse at the foot of the door.\nSleep overcomes you immediately. As night sets in and the temperature drops, the frigid air wakes you. Without a jacket or blankets, your fingertips fall victim to hypothermia.\nIt’s only a matter of time until your toes meet the same fate.");
                 currentHealth = currentHealth - 100;
             }
         }
     }
 
-	public void Mountains() { // mountains path
-		System.out.println(
-				"After toiling through the troubles of the desert, you find yourself approaching a daunting mountain range.\nBy the time you arrive at the base of the first mountain, you see a storm brewing on the horizon,\nurging you onwards.\nHere, you see a large cave opening leading straight through the mountain,\nfrom which you hear an ominous growl. At this point, you can either go through the cave for shelter\nor start the arduous process of climbing the mountain. Which path will you chose, Shelter or Climb?");
-		String shelterClimb = inputString.nextLine();
-		while (!shelterClimb.equalsIgnoreCase("shelter") && !shelterClimb.equalsIgnoreCase("climb")) { // shelter or climb
-			System.out.println("Shelter or Climb?");
-			shelterClimb = inputString.nextLine();
-		}
-		if (shelterClimb.equalsIgnoreCase("shelter")) { // shelter leads to cave
-			
-		}
-		else { // climb
-			
-		}
-	}
-    
-
+    public void Mountains() { // mountains path
+        System.out.println(
+            "After toiling through the troubles of the desert, you find yourself approaching a daunting mountain range.\nBy the time you arrive at the base of the first mountain, you see a storm brewing on the horizon,\nurging you onwards.\nHere, you see a large cave opening leading straight through the mountain,\nfrom which you hear an ominous growl. At this point, you can either go through the cave for shelter\nor start the arduous process of climbing the mountain. Which path will you chose, Shelter or Climb?");
+        String shelterClimb = inputString.nextLine();
+        while (!shelterClimb.equalsIgnoreCase("shelter") && !shelterClimb.equalsIgnoreCase("climb")) { // shelter or climb
+            System.out.println("Shelter or Climb?");
+            shelterClimb = inputString.nextLine();
+        }
+        if (shelterClimb.equalsIgnoreCase("shelter")) { // shelter leads to cave
+            System.out.println("You enter the cave cautiously, and upon being greeted by silence, you forge onwards.\nThe moonlight filtering in illuminates your path. After finding an alcove suitable for resting, you set up and prepare to sleep.\nHowever, you hear the same menacing screech once again, and this time, its right behind you.\nAn enormous bat, ready to sink its log-sized teeth into you, is flying at you.");
+            Fight("Bat", 3, 3, 8, 10, //TODO change these numbers
+                "You slash your sword across the beast’s wings, leaving it helpless. Hardened by your past battles,\nyou finish the job with a stab to the bat’s chest.\nSafe for the moment, you rest in your alcove for the night.\nThe next day, you continue through the cave, and come out unscathed.\nThe view before you you takes your breath away: rolling hills expanding out west, and a vast lakeside forest on the east.",
+                "Try as you might, you are unable to defeat the bat. It strikes at your arm and in your panic,\nyou use your sword to parry, which clatters out of your hands.\nThe bat flaps its wings once, and its teeth impale you.",
+                "Run line here");
+        }
+        else { // climb
+            System.out.println("");
+        }
+    }
 
     public void endGame() { // end game method
         System.out.println("You lost. You must suck at life");
@@ -135,7 +141,7 @@ public class Game {
         }
     }
 
-    public void Fight(String name, int power, int health, int agility, int exp, String win, String lose, String run) { // fight method, could be cleaned up a bit?
+    public void Fight(String name, int power, int health, int agility, int exp, String win, String lose, String run) { // fight method could be cleaned up a bit
         String[] enemyHits = { "hits", "strikes", "scratches", "swipes at", "smacks", "screeches at", "shakes",
                 "batters", "pounds", "snarls at" };
         String[] userHits = { "hit", "strike", "scratch", "swipe at", "smack", "punch", "shake", "batter", "pound",
@@ -155,14 +161,27 @@ public class Game {
                     if (health > 0) {
                         int damage = random.nextInt(6) + power;
                         currentHealth = currentHealth - damage;
-                        System.out.println("The " + name + " " + enemyHits[(int) (Math.random() * 10)] + " you with "
+                        System.out.println("The " + name + " " + enemyHits[random.nextInt(10)] + " you with "
                             + damage + " damage, leaving you with " + currentHealth + " health.");
                     }
                     if (currentHealth > 0) {
-                        int damageUser = random.nextInt(6) + powerUser;
-                        health = health - damageUser;
-                        System.out.println("You " + userHits[(int) (Math.random() * 10)] + " the " + name + " with "
-                            + damageUser + " damage, leaving it with " + health + " health.");
+                        if (((agility - points[2]) * random.nextInt(11)) > 20){
+                            if (random.nextInt(101) > 75) {
+                                int damageUser = random.nextInt(6) + powerUser;
+                                health = health - damageUser;
+                                System.out.println("You " + userHits[random.nextInt(10)] + " the " + name + " with "
+                                    + damageUser + " damage, leaving it with " + health + " health.");
+                            }
+                            else {
+                                System.out.println("The " + name + " dodged your attack.");
+                            }
+                        }
+                        else {
+                            int damageUser = random.nextInt(6) + powerUser;
+                            health = health - damageUser;
+                            System.out.println("You " + userHits[random.nextInt(10)] + " the " + name + " with "
+                                + damageUser + " damage, leaving it with " + health + " health.");
+                        }
                     }
                 }
                 if (currentHealth <= 0) {
@@ -175,20 +194,34 @@ public class Game {
                 } else {
                     System.out.println("shit");
                 }
-            } else {
+            }
+            else {
                 System.out.println("The " + name + " moves slowly, and you attack first.");
                 while (currentHealth > 0 && health > 0) {
                     if (currentHealth > 0) {
-                        int damageUser = random.nextInt(6) + powerUser;
-                        health = health - damageUser;
-                        System.out.println("You " + userHits[(int) (Math.random() * 10)] + " the " + name + " with "
-                            + damageUser + " damage, leaving it with " + health + " health.");
+                        if (((points[2] - agility) * random.nextInt(11)) > 20){
+                            if (random.nextInt(101) > 75) {
+                                int damageUser = random.nextInt(6) + powerUser;
+                                health = health - damageUser;
+                                System.out.println("You " + userHits[random.nextInt(10)] + " the " + name + " with "
+                                    + damageUser + " damage, leaving it with " + health + " health.");
+                            }
+                            else {
+                                System.out.println("You dodged the " + name + "'s attack.");
+                            }
+                        }
+                        else {
+                            int damageUser = random.nextInt(6) + powerUser;
+                            health = health - damageUser;
+                            System.out.println("You " + userHits[random.nextInt(10)] + " the " + name + " with "
+                                + damageUser + " damage, leaving it with " + health + " health.");
+                        }
                     }
                     if (health > 0) {
                         int damage = random.nextInt(6) + power;
                         currentHealth = currentHealth - damage;
                         System.out
-                        .println("The " + name + " " + enemyHits[(int) (Math.random() * 10)] + " you, dealing "
+                        .println("The " + name + " " + enemyHits[random.nextInt(10)] + " you, dealing "
                             + damage + " damage, leaving you with " + currentHealth + " health.");
                     }
                 }
@@ -215,14 +248,27 @@ public class Game {
                     if (health > 0) {
                         int damage = random.nextInt(6) + power;
                         currentHealth = currentHealth - damage;
-                        System.out.println("The " + name + " " + enemyHits[(int) (Math.random() * 10)] + " you with "
+                        System.out.println("The " + name + " " + enemyHits[random.nextInt(10)] + " you with "
                             + damage + " damage, leaving you with " + currentHealth + " health.");
                     }
                     if (currentHealth > 0) {
-                        int damageUser = random.nextInt(6) + powerUser;
-                        health = health - damageUser;
-                        System.out.println("You " + userHits[(int) (Math.random() * 10)] + " the " + name + " with "
-                            + damageUser + " damage, leaving it with " + health + " health.");
+                        if (((agility - points[2]) * random.nextInt(11)) > 20){
+                            if (random.nextInt(101) > 75) {
+                                int damageUser = random.nextInt(6) + powerUser;
+                                health = health - damageUser;
+                                System.out.println("You " + userHits[random.nextInt(10)] + " the " + name + " with "
+                                    + damageUser + " damage, leaving it with " + health + " health.");
+                            }
+                            else {
+                                System.out.println("The " + name + " dodged your attack.");
+                            }
+                        }
+                        else {
+                            int damageUser = random.nextInt(6) + powerUser;
+                            health = health - damageUser;
+                            System.out.println("You " + userHits[random.nextInt(10)] + " the " + name + " with "
+                                + damageUser + " damage, leaving it with " + health + " health.");
+                        }
                     }
                 }
                 if (currentHealth <= 0) {
