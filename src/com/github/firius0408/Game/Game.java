@@ -18,7 +18,7 @@ public class Game {
     }
 
     //TODO add save file? Inventory? Armor? Food? What to do with exp? Scrolling text or waiting for user input
-    //TODO experience in more things like lockpicking and magic, checkUserInput for key words like xp and health
+    //TODO experience in more things like lockpicking and magic
     public void startGame() {
         System.out.println("Welcome to our game.\nLet us begin...\n\n\nWhat is your name?");
         userName = inputString.nextLine();
@@ -82,11 +82,11 @@ public class Game {
                 System.out.println("You take 200 damage");
                 currentHealth = currentHealth - 200;
                 System.out.println("Your health is now " + currentHealth);
-                System.out.println("\nA long time later, you finally are awakened by the lessening of the intense heat");
                 if (currentHealth < 0) {
                     System.out.println("You lost too much health");
                     endGame();
                 }
+                System.out.println("\nA long time later, you finally are awakened by the lessening of the intense heat");
             }
         }
         System.out.println( // both paths converge here
@@ -94,6 +94,8 @@ public class Game {
         System.out.println("\nBefore long, the sky begins to redden. The sun slowly sinks beneath the horizon,\npainting the sky with reds and oranges, reds and oranges that remind you yet again of the trouble you now face.\nWhy does everything remind you of fire? Nevermind that, now you need shelter. You turn to the house.\nLocked, just like you remember. You search around the ______(building), and find a piece of rusty wire.\nYou attempt to pick the lock.");
         if (points[1] + random.nextInt(3) >= 7){
             System.out.println("You successfully pick the lock.");
+            exp = exp + 5;
+            System.out.println("Your xp is now " + exp + ".");
         }    
         else {
             System.out.println("Unsuccessful with the lock, you attempt to kick down the door.");
@@ -109,21 +111,37 @@ public class Game {
 
     public void Mountains() { // mountains path
         System.out.println(
-            "After toiling through the troubles of the desert, you find yourself approaching a daunting mountain range.\nBy the time you arrive at the base of the first mountain, you see a storm brewing on the horizon,\nurging you onwards.\nHere, you see a large cave opening leading straight through the mountain,\nfrom which you hear an ominous growl. At this point, you can either go through the cave for shelter\nor start the arduous process of climbing the mountain. Which path will you chose, Shelter or Climb?");
+            "After toiling through the troubles of the desert, you find yourself approaching a daunting mountain range.\nBy the time you arrive at the base of the first mountain, you see a storm brewing on the horizon,\nurging you onwards.\nHere, you see a large cave opening leading straight through the mountain,\nfrom which you hear an ominous growl. At this point, you can either go through the cave for shelter\nor start the arduous process of climbing the mountain. Which path will you chose, shelter or climb?");
         String shelterClimb = CheckString();
         while (!shelterClimb.equalsIgnoreCase("shelter") && !shelterClimb.equalsIgnoreCase("climb")) { // shelter or climb
             System.out.println("Shelter or Climb?");
             shelterClimb = CheckString();
         }
-        if (shelterClimb.equalsIgnoreCase("shelter")) { // shelter leads to cave
+        if (shelterClimb.equalsIgnoreCase("climb") && points[2] + random.nextInt(3) > 6) { // climb and succeed
+        	System.out.println("Hesitantly, you start the trek up the mountain. About halfway up your ascent, you stumble briefly, and almost fall off the cliff.\nYou catch yourself and continue up the mountain, only to hear the booming claps of thunder on your back. The storm is upon you now,\nand the winds are swirling around you, leaving no room for doubt.\nYou realize that you must make it to the other side of the mountain to take shelter.");
+        	System.out.println("After skillfully climbing the treacherous slope");
+        }
+        else { // shelter or climb and fail
+        	if (shelterClimb.equalsIgnoreCase("climb")) {
+        		System.out.println("Hesitantly, you start the trek up the mountain. About halfway up your ascent, you stumble briefly, and almost fall off the cliff.\nYou catch yourself and continue up the mountain, only to hear the booming claps of thunder on your back. The storm is upon you now,\nand the winds are swirling around you, leaving no room for doubt.\nYou realize that you must make it to the other side of the mountain to take shelter.");
+        		System.out.println("Despite giving it your best effort, you are unable to persevere through the storm.\nAs you are climbing up the face of the mountain, a gust of wind hits you, causing you to lose your grip. Trying to get a grasp of the rock,\nyou claw furiously at the air in front of you. You begin to fall, tumbling down the rough slope.\nAfter finally coming to a stop, you lay at the base of the mountain.");
+        		System.out.println("You take 200 damage.");
+        		currentHealth = currentHealth - 200;
+        		System.out.println("Your health is now " + currentHealth);
+                if (currentHealth < 0) {
+                    System.out.println("You lost too much health");
+                    endGame();
+                }
+                else {
+                	System.out.println("\nMiraculously, you survived the fall and managed to avoid any serious injuries. Bruised and cut up, you struggle to your feet,\nonly to find yourself where you started, in front of the large cave that cuts through the mountain.\nRealizing that climbing is no longer a valid option, you start towards the entrance of the cave.\n");
+                }
+        	}
             System.out.println("You enter the cave cautiously, and upon being greeted by silence, you forge onwards.\nThe moonlight filtering in illuminates your path. After finding an alcove suitable for resting, you set up and prepare to sleep.\nHowever, you hear the same menacing screech once again, and this time, its right behind you.\nAn enormous bat, ready to sink its log-sized teeth into you, is flying at you.");
             Fight("Bat", 3, 3, 8, 10, //TODO change these numbers
-                "You slash your sword across the beast’s wings, leaving it helpless. Hardened by your past battles,\nyou finish the job with a stab to the bat’s chest.\nSafe for the moment, you rest in your alcove for the night.\nThe next day, you continue through the cave, and come out unscathed.\nThe view before you you takes your breath away: rolling hills expanding out west, and a vast lakeside forest on the east.",
+                "You slash your sword across the beast’s wings, leaving it helpless. Hardened by your past battles,\nyou finish the job with a stab to the bat’s chest.\nSafe for the moment, you rest in your alcove for the night.",
                 "Try as you might, you are unable to defeat the bat. It strikes at your arm and in your panic,\nyou use your sword to parry, which clatters out of your hands.\nThe bat flaps its wings once, and its teeth impale you.",
                 "Run line here");
-        }
-        else { // climb
-            System.out.println("");
+            System.out.println("\nThe next day, you continue through the cave, and come out unscathed.\nThe view before you you takes your breath away: rolling hills expanding out west, and a vast lakeside forest on the east.");
         }
     }
 
@@ -141,7 +159,7 @@ public class Game {
         }
     }
 
-    public void Fight(String name, int power, int health, int agility, int exp, String win, String lose, String run) { // fight method could be cleaned up a bit
+    public void Fight(String name, int power, int health, int agility, int exp, String win, String lose, String run) { // fight method could be cleaned up a bit and by a bit I mean a lot damn it messy in here
         String[] enemyHits = { "hits", "strikes", "scratches", "swipes at", "smacks", "screeches at", "shakes",
                 "batters", "pounds", "snarls at" };
         String[] userHits = { "hit", "strike", "scratch", "swipe at", "smack", "punch", "shake", "batter", "pound",
@@ -165,7 +183,7 @@ public class Game {
                             + damage + " damage, leaving you with " + currentHealth + " health.");
                     }
                     if (currentHealth > 0) {
-                        if (((agility - points[2]) * random.nextInt(11)) > 20){
+                        if (((agility - points[2]) * random.nextInt(11)) > 20){ // dodge
                             if (random.nextInt(101) > 75) {
                                 int damageUser = random.nextInt(6) + powerUser;
                                 health = health - damageUser;
@@ -199,30 +217,29 @@ public class Game {
                 System.out.println("The " + name + " moves slowly, and you attack first.");
                 while (currentHealth > 0 && health > 0) {
                     if (currentHealth > 0) {
-                        if (((points[2] - agility) * random.nextInt(11)) > 20){
-                            if (random.nextInt(101) > 75) {
-                                int damageUser = random.nextInt(6) + powerUser;
-                                health = health - damageUser;
-                                System.out.println("You " + userHits[random.nextInt(10)] + " the " + name + " with "
-                                    + damageUser + " damage, leaving it with " + health + " health.");
-                            }
-                            else {
-                                System.out.println("You dodged the " + name + "'s attack.");
-                            }
-                        }
-                        else {
-                            int damageUser = random.nextInt(6) + powerUser;
-                            health = health - damageUser;
-                            System.out.println("You " + userHits[random.nextInt(10)] + " the " + name + " with "
-                                + damageUser + " damage, leaving it with " + health + " health.");
-                        }
+                    	int damageUser = random.nextInt(6) + powerUser;
+                    	health = health - damageUser;
+                    	System.out.println("You " + userHits[random.nextInt(10)] + " the " + name + " with "
+                    			+ damageUser + " damage, leaving it with " + health + " health.");  
                     }
                     if (health > 0) {
-                        int damage = random.nextInt(6) + power;
-                        currentHealth = currentHealth - damage;
-                        System.out
-                        .println("The " + name + " " + enemyHits[random.nextInt(10)] + " you, dealing "
-                            + damage + " damage, leaving you with " + currentHealth + " health.");
+                    	if (((points[2] - agility) * random.nextInt(11)) > 20){ // dodge
+                            if (random.nextInt(101) > 75) {
+                            	int damage = random.nextInt(6) + power;
+                            	currentHealth = currentHealth - damage;
+                            	System.out.println("The " + name + " " + enemyHits[random.nextInt(10)] + " you, dealing "
+                            		+ damage + " damage, leaving you with " + currentHealth + " health.");
+                            }
+                            else {
+                            	System.out.println("You dodged the " + name + "'s attack.");
+                            }
+                    	}
+                    	else {
+                    		int damage = random.nextInt(6) + power;
+                        	currentHealth = currentHealth - damage;
+                        	System.out.println("The " + name + " " + enemyHits[random.nextInt(10)] + " you, dealing "
+                        		+ damage + " damage, leaving you with " + currentHealth + " health.");
+                    	}
                     }
                 }
                 if (currentHealth <= 0) {
