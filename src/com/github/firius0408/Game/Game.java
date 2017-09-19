@@ -48,10 +48,10 @@ public class Game {
             + ", have stayed behind. For what reason, you cannot remember.\nBut surely it'll come to you sometime.\n \tRight?");
         System.out.println(
             "\nYou are now faced with a difficult choice. You can walk west towards the plains, or you can walk north towards the mountains.\nWhich do you choose?");
-        String choice = inputString.nextLine(); // choice of plains or mountains
+        String choice = CheckString(); // choice of plains or mountains
         while (!choice.equalsIgnoreCase("plains") && !choice.equalsIgnoreCase("mountains")) {
             System.out.println("Plains or Mountains?");
-            choice = inputString.nextLine();
+            choice = CheckString();
         }
         if (choice.equalsIgnoreCase("plains")) {
             Plains();
@@ -63,10 +63,10 @@ public class Game {
     public void Plains() { // plains path
         System.out.println(
             "You choose to make the trek across the grueling scorched earth. The sun begins to drop along the horizon.\nEventually, though, you see a faint outline of a ______(building) in the distance. With little water left in your flask,and the sun high in the sky, \nyou can either rest where you are or expend whatever energy it takes to get to _____.\nRest until it's cooler or continue?");
-        String trekRest = inputString.nextLine();
+        String trekRest = CheckString();
         while (!trekRest.equalsIgnoreCase("rest") && !trekRest.equalsIgnoreCase("continue")) { // sleep or continue
             System.out.println("Rest or Continue?");
-            trekRest = inputString.nextLine();
+            trekRest = CheckString();
         }
         if (trekRest.equalsIgnoreCase("rest")) { //sleep leads to fight with Wolf
             System.out.println(
@@ -110,10 +110,10 @@ public class Game {
     public void Mountains() { // mountains path
         System.out.println(
             "After toiling through the troubles of the desert, you find yourself approaching a daunting mountain range.\nBy the time you arrive at the base of the first mountain, you see a storm brewing on the horizon,\nurging you onwards.\nHere, you see a large cave opening leading straight through the mountain,\nfrom which you hear an ominous growl. At this point, you can either go through the cave for shelter\nor start the arduous process of climbing the mountain. Which path will you chose, Shelter or Climb?");
-        String shelterClimb = inputString.nextLine();
+        String shelterClimb = CheckString();
         while (!shelterClimb.equalsIgnoreCase("shelter") && !shelterClimb.equalsIgnoreCase("climb")) { // shelter or climb
             System.out.println("Shelter or Climb?");
-            shelterClimb = inputString.nextLine();
+            shelterClimb = CheckString();
         }
         if (shelterClimb.equalsIgnoreCase("shelter")) { // shelter leads to cave
             System.out.println("You enter the cave cautiously, and upon being greeted by silence, you forge onwards.\nThe moonlight filtering in illuminates your path. After finding an alcove suitable for resting, you set up and prepare to sleep.\nHowever, you hear the same menacing screech once again, and this time, its right behind you.\nAn enormous bat, ready to sink its log-sized teeth into you, is flying at you.");
@@ -132,7 +132,7 @@ public class Game {
         String playAgain;
         do {
             System.out.println("Would you like to play again: [y/n]");
-            playAgain = inputString.nextLine();
+            playAgain = CheckString();
         } while (!playAgain.equalsIgnoreCase("y") && !playAgain.equalsIgnoreCase("n"));
         if (playAgain.equalsIgnoreCase("y")) {
             startGame(); // restarts game if yes
@@ -149,7 +149,7 @@ public class Game {
         String choice;
         do {
             System.out.println("Would you like to fight or run?");
-            choice = inputString.nextLine();
+            choice = CheckString();
         } while (!choice.equalsIgnoreCase("fight") && !choice.equalsIgnoreCase("run"));
         if (choice.equalsIgnoreCase("fight")) { // fight is chosen
             System.out.println("You have choosen to fight!");
@@ -286,12 +286,40 @@ public class Game {
             System.out.println("shit");
         }
     }
+    
+    public String CheckString() { // prompts user for String TODO add more options
+    	String temp = inputString.nextLine();
+    	if (temp.equalsIgnoreCase("xp")) {
+    		System.out.println("Your xp is now at " + exp);
+    		return null;
+    	}
+    	else if (temp.equalsIgnoreCase("health")) {
+    		System.out.println("Your health is now at " + currentHealth);
+    		return null;
+    	}
+    	else if (temp.equalsIgnoreCase("stats")) {
+    		System.out.println("Your current stats are :");
+    		System.out.println("Intelligence: " + points[1]);
+            System.out.println("Agility: " + points[2]);
+            System.out.println("Power: " + points[3]);
+            System.out.println("Health: " + points[4]);
+            System.out.println("Magic: " + points[5]);
+            return null;
+    	}
+    	else if (temp.equalsIgnoreCase("quit")) {
+    		endGame();
+    		return null;
+    	}
+    	else {
+    		return temp;
+    	}
+    }
 
     public int CheckInt() { // prompts user for integer
         String temp = inputString.nextLine();
         while(!isInteger(temp)){
             System.out.println("Your input was not an integer. Try again");
-            temp = inputString.nextLine();
+            temp = CheckString();
             isInteger(temp);
         }
         return Integer.parseInt(temp);
