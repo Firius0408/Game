@@ -319,7 +319,7 @@ public class Game {
         String temp = inputString.nextLine();
         while(!isInteger(temp)){
             System.out.println("Your input was not an integer. Try again");
-            temp = CheckString();
+            temp = inputString.nextLine();
             isInteger(temp);
         }
         return Integer.parseInt(temp);
