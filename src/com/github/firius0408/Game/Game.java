@@ -175,7 +175,8 @@ public class Game {
 		if (playAgain.equalsIgnoreCase("y")) {
 			startGame(); // restarts game if yes
 		} else {
-			System.out.println("Goodbye"); // TODO close window?
+			System.out.println("Goodbye");
+			System.exit(0);
 		}
 	}
 
@@ -330,10 +331,10 @@ public class Game {
 		String temp = inputString.nextLine();
 		if (temp.equalsIgnoreCase("xp")) {
 			System.out.println("Your xp is now at " + exp);
-			return null;
+			return "";
 		} else if (temp.equalsIgnoreCase("health")) {
 			System.out.println("Your health is now at " + currentHealth);
-			return null;
+			return "";
 		} else if (temp.equalsIgnoreCase("stats")) {
 			System.out.println("Your current stats are :");
 			System.out.println("Intelligence: " + points[1]);
@@ -341,10 +342,10 @@ public class Game {
 			System.out.println("Power: " + points[3]);
 			System.out.println("Health: " + points[4]);
 			System.out.println("Magic: " + points[5]);
-			return null;
+			return "";
 		} else if (temp.equalsIgnoreCase("quit")) {
 			endGame();
-			return null;
+			return "";
 		} else {
 			return temp;
 		}
