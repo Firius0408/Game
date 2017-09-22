@@ -179,7 +179,7 @@ public class Game {
 		}
 	}
 
-	public void Fight(String name, int power, int health, int agility, int exp, String win, String lose, String run,
+	public void Fight(String name, int power, int health, int agility, int xp, String win, String lose, String run,
 			boolean dream) { // fight method could be cleaned up a bit and by a bit I mean a lot damn it
 								// messy in here
 		String[] enemyHits = { "hits", "strikes", "scratches", "swipes at", "smacks", "screeches at", "shakes",
@@ -229,8 +229,8 @@ public class Game {
 					}
 				} else if (health <= 0) {
 					System.out.println(win);
-					this.exp = this.exp + exp;
-					System.out.println("Your xp is now " + this.exp + ".");
+					exp = exp + xp;
+					System.out.println("Your xp is now " + exp + ".");
 				} else {
 					System.out.println("shit");
 				}
@@ -269,8 +269,8 @@ public class Game {
 					}
 				} else if (health <= 0) {
 					System.out.println("\n" + win);
-					this.exp = this.exp + exp;
-					System.out.println("Your xp is now " + this.exp + ".");
+					exp = exp + xp;
+					System.out.println("Your xp is now " + exp + ".");
 				} else {
 					System.out.println("shit");
 				}
@@ -315,8 +315,8 @@ public class Game {
 					}
 				} else if (health <= 0) {
 					System.out.println(win);
-					this.exp = this.exp + exp;
-					System.out.println("Your xp is now " + this.exp + ".");
+					exp = exp + xp;
+					System.out.println("Your xp is now " + exp + ".");
 				} else {
 					System.out.println("shit");
 				}
