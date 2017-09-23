@@ -117,11 +117,12 @@ public class Game {
 			}
 		}
 		System.out.println(
-				"A shape shifts restlessly in the shadows. The nebulous blob of black draws closer. You squint out at the consuming darkness, \nbarely able make out the form. The shape moves on in the darkness.\n\nYou lie back down to rest, telling yourself your exhausted brain is playing tricks on your vision.\n\nSuddenly, a shape comes crashing into you. Sand and dirt fly as you roll on the ground.\nYou spring up from the earth to face the largest, blackest horse you have ever seen. But it is not just a horse, as you can see shadows pouring off its form, like a mist of black.\nFight or run?");
+				"A shape shifts restlessly in the shadows. The nebulous blob of black draws closer. You squint out at the consuming darkness, \nbarely able make out the form. The shape moves on in the darkness.\n\nYou lie back down to rest, telling yourself your exhausted brain is playing tricks on your vision.\n\nSuddenly, a shape comes crashing into you. Sand and dirt fly as you roll on the ground.\nYou spring up from the earth to face the biggest, blackest horse you have ever seen. But it is not just a horse, as you can see shadows pouring off its form, like a mist of black.\nFight or run?");
 		Fight("Horse", 100, 50, 25, 10, "Win", "Lose", "Run", true);
 		System.out.println(
 				"You collapse to the earth, feeling the cold sand and dirt supporting your useless body. You can barely move.\nYou lift your head to see the spirit horse a few feet away, looking victorious. It looks over. You hope it did not see you move. It did.\nAs you lay there helplessly, it charges.");
-
+		System.out.println("You wake up on the ground of the ________(building). You must have fallen off your bed during your dream.\n\nA nightmare, really\n\nA nightmare in a nightmare.\n");
+		System.out.println("You chuckle softly, with nervous relief. It is time to keep moving on in your journey. As you continue walking through the plains, you summit a small hill.\nThe view before you you takes your breath away: rollings hills expanding out west, and a vast lakeside forest on the east.");
 	}
 
 	public void Mountains() { // mountains path
@@ -137,7 +138,7 @@ public class Game {
 			System.out.println(
 					"Hesitantly, you start the trek up the mountain. About halfway up your ascent, you stumble briefly, and almost fall off the cliff.\nYou catch yourself and continue up the mountain, only to hear the booming claps of thunder on your back. The storm is upon you now,\nand the winds are swirling around you, leaving no room for doubt.\nYou realize that you must make it to the other side of the mountain to take shelter.");
 			System.out.println(
-					"After skillfully climbing the treacherous slope, you find an alcove on the other side and take shelter ");
+					"After skillfully climbing the treacherous slope, you find an alcove on the other side and take shelter. The journey down the mountain is relatively tame,\nand you are met with rolling hills expanding out west, and a vast lakeside forest on the east.");
 		} else { // shelter or climb and fail
 			if (shelterClimb.equalsIgnoreCase("climb")) {
 				System.out.println(
