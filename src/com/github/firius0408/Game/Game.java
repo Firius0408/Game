@@ -33,6 +33,16 @@ public class Game {
 		System.out.println("Magic: " + points[5]);
 		currentHealth = points[4] * 100;
 		Beginning(); // calls Beginning method
+		String choice = CheckString(); // choice of plains or mountains
+		while (!choice.equalsIgnoreCase("plains") && !choice.equalsIgnoreCase("mountains")) {
+			System.out.println("Plains or Mountains?");
+			choice = CheckString();
+		}
+		if (choice.equalsIgnoreCase("plains")) {
+			Plains();
+		} else {
+			Mountains();
+		}
 	}
 
 	public void Beginning() {
@@ -49,16 +59,6 @@ public class Game {
 						+ ", have stayed behind. For what reason, you cannot remember.\nBut surely it'll come to you sometime.\n \tRight?");
 		System.out.println(
 				"\nYou are now faced with a difficult choice. You can walk west towards the plains, or you can walk north towards the mountains.\nWhich do you choose?");
-		String choice = CheckString(); // choice of plains or mountains
-		while (!choice.equalsIgnoreCase("plains") && !choice.equalsIgnoreCase("mountains")) {
-			System.out.println("Plains or Mountains?");
-			choice = CheckString();
-		}
-		if (choice.equalsIgnoreCase("plains")) {
-			Plains();
-		} else {
-			Mountains();
-		}
 	}
 
 	public void Plains() { // plains path
