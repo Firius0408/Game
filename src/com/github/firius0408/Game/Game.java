@@ -43,6 +43,16 @@ public class Game {
 		} else {
 			Mountains();
 		}
+		String choice2 = CheckString(); // choice of hills or forest
+		while (!choice2.equalsIgnoreCase("hills") && !choice2.equalsIgnoreCase("forest")) {
+			System.out.println("Hills or Forest?");
+			choice2 = CheckString();
+		}
+		if (choice2.equalsIgnoreCase("hills")) {
+			Hills();
+		} else {
+			Forest();
+		}
 	}
 
 	public void Beginning() {
@@ -165,6 +175,14 @@ public class Game {
 			System.out.println(
 					"\nThe next day, you continue through the cave, and come out unscathed.\nThe view before you you takes your breath away: rolling hills expanding out west, and a vast lakeside forest on the east.");
 		}
+	}
+	
+	public void Hills() {
+		
+	}
+	
+	public void Forest() {
+		
 	}
 
 	public void endGame() { // end game method
