@@ -63,7 +63,8 @@ public class Game {
 				"You become overwhelmed by the wrath of the Phoenix. After a grueling battle, you submit and become engulfed by its flames.",
 				"You bend over, out of breath. Behind you, the phoenix roars in frustration, scouring the ground for your presence.",
 				false);
-		System.out.println("\nYou look back at the wasteland of what used to be your home. Seeing this image, you try to recall how it ended up this way");
+		System.out.println(
+				"\nYou look back at the wasteland of what used to be your home. Seeing this image, you try to recall how it ended up this way");
 		System.out.println(
 				"\n\tThe land of Skoll was at peace with the world. The weather had been perfect\nfor agriculture for many years now, the nation flourishing with a surplus of food and\nwealth. The standard of living went up, people were happy, and marijuana was legal.\n\tBut then the fire nation attacked.\n\tThey used flamethrowers, fireballs, and anything else with fire involved.\nMatches and lighters too. Every house in Skoll was burned to the ground, and the\ngrass was scorched as well. Most of Skoll's citizens evacuated within a week of the\nattack, but you, "
 						+ userName
@@ -131,8 +132,10 @@ public class Game {
 		Fight("Horse", 100, 50, 25, 10, "Win", "Lose", "Run", true);
 		System.out.println(
 				"You collapse to the earth, feeling the cold sand and dirt supporting your useless body. You can barely move.\nYou lift your head to see the spirit horse a few feet away, looking victorious. It looks over. You hope it did not see you move. It did.\nAs you lay there helplessly, it charges.");
-		System.out.println("You wake up on the ground of the ________(building). You must have fallen off your bed during your dream.\n\nA nightmare, really\n\nA nightmare in a nightmare.\n");
-		System.out.println("You chuckle softly, with nervous relief. It is time to keep moving on in your journey. As you continue walking through the plains, you summit a small hill.\nThe view before you you takes your breath away: rollings hills expanding out west, and a vast lakeside forest on the east.");
+		System.out.println(
+				"You wake up on the ground of the ________(building). You must have fallen off your bed during your dream.\n\nA nightmare, really\n\nA nightmare in a nightmare.\n");
+		System.out.println(
+				"You chuckle softly, with nervous relief. It is time to keep moving on in your journey. As you continue walking through the plains, you summit a small hill.\nThe view before you you takes your breath away: rollings hills expanding out west, and a vast lakeside forest on the east.");
 	}
 
 	public void Mountains() { // mountains path
@@ -176,13 +179,13 @@ public class Game {
 					"\nThe next day, you continue through the cave, and come out unscathed.\nThe view before you you takes your breath away: rolling hills expanding out west, and a vast lakeside forest on the east.");
 		}
 	}
-	
+
 	public void Hills() {
-		
+
 	}
-	
+
 	public void Forest() {
-		
+
 	}
 
 	public void endGame() { // end game method
