@@ -43,6 +43,7 @@ public class Game {
 		} else {
 			Mountains();
 		}
+		System.out.println("Which path do you chose? Hills or Forest?");
 		String choice2 = CheckString(); // choice of hills or forest
 		while (!choice2.equalsIgnoreCase("hills") && !choice2.equalsIgnoreCase("forest")) {
 			System.out.println("Hills or Forest?");
