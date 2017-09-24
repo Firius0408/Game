@@ -181,7 +181,11 @@ public class Game {
 	}
 
 	public void Hills() {
-
+		System.out.println("You begin the trek across the expanse of green ahead of you, a thunderous storm chasing you from the east.\nComing over the crest of the third hill, you shift your glance, looking downwards level with the decline of the ridge. You smell something weird, causing goosebumps to ripple over your skin like electricity.\nA jaguar, starting from a crouched position, slowly rises to meet your gaze. You have the high ground, but the jaguar is standing directly in the way of your path.\nFight or run?");
+		Fight("Jaguar", 1, 1, 1, 10,
+				"win",
+				"lose",
+				"run", false);
 	}
 
 	public void Forest() {
