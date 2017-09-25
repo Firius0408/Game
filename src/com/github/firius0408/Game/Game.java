@@ -99,6 +99,7 @@ public class Game {
 				if (currentHealth < 0) {
 					System.out.println("You lost too much health");
 					endGame();
+					return;
 				}
 				System.out
 						.println("\nA long time later, you finally are awakened by the lessening of the intense heat");
@@ -126,10 +127,16 @@ public class Game {
 						"You have failed to pick the lock and knock down the door. You lack the strength to drag your exhausted body away from the _______(building), and collapse at the foot of the door.\nSleep overcomes you immediately. As night sets in and the temperature drops, the frigid air wakes you. Without a jacket or blankets, your fingertips fall victim to hypothermia.\nIt’s only a matter of time until your toes meet the same fate.");
 				System.out.println("You take 100 damage");
 				currentHealth = currentHealth - 100;
+				System.out.println("Your health is now " + currentHealth);
+				if (currentHealth < 0) {
+					System.out.println("You lost too much health");
+					endGame();
+					return;
+				}
 			}
 		}
 		System.out.println(
-				"A shape shifts restlessly in the shadows. The nebulous blob of black draws closer. You squint out at the consuming darkness, \nbarely able make out the form. The shape moves on in the darkness.\n\nYou lie back down to rest, telling yourself your exhausted brain is playing tricks on your vision.\n\nSuddenly, a shape comes crashing into you. Sand and dirt fly as you roll on the ground.\nYou spring up from the earth to face the biggest, blackest horse you have ever seen. But it is not just a horse, as you can see shadows pouring off its form, like a mist of black.\nFight or run?");
+				"A shape shifts restlessly in the shadows. The nebulous blob of black draws closer. You squint out at the consuming darkness, \nbarely able make out the form. The shape moves on in the darkness.\n\nYou lie back down to rest, telling yourself your exhausted brain is playing tricks on your vision.\n\nSuddenly, a shape comes crashing into you. Sand and dirt fly as you roll on the ground.\nYou spring up from the earth to face the biggest, blackest horse you have ever seen. But it is not just a horse, as you can see shadows pouring off its form, like a mist of black.");
 		int tempHealth = currentHealth;
 		Fight("Horse", 100, 50, 25, 10, "Win", "Lose", "Run", true);
 		System.out.println(
@@ -145,8 +152,7 @@ public class Game {
 		System.out.println(
 				"After toiling through the troubles of the desert, you find yourself approaching a daunting mountain range.\nBy the time you arrive at the base of the first mountain, you see a storm brewing on the horizon,\nurging you onwards.\nHere, you see a large cave opening leading straight through the mountain,\nfrom which you hear an ominous growl. At this point, you can either go through the cave for shelter\nor start the arduous process of climbing the mountain. Which path will you chose, shelter or climb?");
 		String shelterClimb = CheckString();
-		while (!shelterClimb.equalsIgnoreCase("shelter") && !shelterClimb.equalsIgnoreCase("climb")) { // shelter or
-																										// climb
+		while (!shelterClimb.equalsIgnoreCase("shelter") && !shelterClimb.equalsIgnoreCase("climb")) { // shelter or climb
 			System.out.println("Shelter or Climb?");
 			shelterClimb = CheckString();
 		}
@@ -167,6 +173,7 @@ public class Game {
 				if (currentHealth < 0) {
 					System.out.println("You lost too much health");
 					endGame();
+					return;
 				} else {
 					System.out.println(
 							"\nMiraculously, you survived the fall and managed to avoid any serious injuries. Bruised and cut up, you struggle to your feet,\nonly to find yourself where you started, in front of the large cave that cuts through the mountain.\nRealizing that climbing is no longer a valid option, you start towards the entrance of the cave.\n");
@@ -184,11 +191,9 @@ public class Game {
 	}
 
 	public void Hills() {
-		System.out.println("You begin the trek across the expanse of green ahead of you, a thunderous storm chasing you from the east.\nComing over the crest of the third hill, you shift your glance, looking downwards level with the decline of the ridge. You smell something weird, causing goosebumps to ripple over your skin like electricity.\nA jaguar, starting from a crouched position, slowly rises to meet your gaze. You have the high ground, but the jaguar is standing directly in the way of your path.\nFight or run?");
-		Fight("Jaguar", 1, 1, 1, 10,
-				"win",
-				"lose",
-				"run", false);
+		System.out.println(
+				"You begin the trek across the expanse of green ahead of you, a thunderous storm chasing you from the east.\nComing over the crest of the third hill, you shift your glance, looking downwards level with the decline of the ridge. You smell something weird, causing goosebumps to ripple over your skin like electricity.\nA jaguar, starting from a crouched position, slowly rises to meet your gaze. You have the high ground, but the jaguar is standing directly in the way of your path.");
+		Fight("Jaguar", 1, 1, 1, 10, "win", "lose", "run", false);
 	}
 
 	public void Forest() {
@@ -211,8 +216,7 @@ public class Game {
 	}
 
 	public void Fight(String name, int power, int health, int agility, int xp, String win, String lose, String run,
-			boolean dream) { // fight method could be cleaned up a bit and by a bit I mean a lot damn it
-								// messy in here
+			boolean dream) { // fight method could be cleaned up a bit and by a bit I mean a lot damn it messy in here
 		String[] enemyHits = { "hits", "strikes", "scratches", "swipes at", "smacks", "screeches at", "shakes",
 				"batters", "pounds", "snarls at" };
 		String[] userHits = { "hit", "strike", "scratch", "swipe at", "smack", "punch", "shake", "batter", "pound",
@@ -257,6 +261,7 @@ public class Game {
 					System.out.println(lose);
 					if (!dream) {
 						endGame();
+						return;
 					}
 				} else if (health <= 0) {
 					System.out.println(win);
@@ -297,6 +302,7 @@ public class Game {
 					System.out.println(lose);
 					if (!dream) {
 						endGame();
+						return;
 					}
 				} else if (health <= 0) {
 					System.out.println("\n" + win);
@@ -343,6 +349,7 @@ public class Game {
 					System.out.println(lose);
 					if (!dream) {
 						endGame();
+						return;
 					}
 				} else if (health <= 0) {
 					System.out.println(win);
@@ -359,13 +366,13 @@ public class Game {
 
 	public String CheckString() { // prompts user for String TODO add more options
 		String temp = inputString.nextLine();
-		if (temp.equalsIgnoreCase("xp")) {
+		if (temp.equalsIgnoreCase("/xp")) {
 			System.out.println("Your xp is now at " + exp);
 			return "";
-		} else if (temp.equalsIgnoreCase("health")) {
+		} else if (temp.equalsIgnoreCase("/health")) {
 			System.out.println("Your health is now at " + currentHealth);
 			return "";
-		} else if (temp.equalsIgnoreCase("stats")) {
+		} else if (temp.equalsIgnoreCase("/stats")) {
 			System.out.println("Your current stats are :");
 			System.out.println("Intelligence: " + points[1]);
 			System.out.println("Agility: " + points[2]);
@@ -373,8 +380,11 @@ public class Game {
 			System.out.println("Health: " + points[4]);
 			System.out.println("Magic: " + points[5]);
 			return "";
-		} else if (temp.equalsIgnoreCase("quit")) {
+		} else if (temp.equalsIgnoreCase("/quit")) {
 			endGame();
+			return "";
+		} else if (temp.equalsIgnoreCase("/help")) {
+			System.out.println("Other commands include: /xp, /health, /stats, and /quit");
 			return "";
 		} else {
 			return temp;
